@@ -981,7 +981,7 @@ var downloadurl=function(s){
 		hide("col");
 			hide("coll");
 
-	html("noticetext","Downloading...."+ (isAndroid?"Check Notification bar to open the file. ( Use 'Download' app to open again.)":""));
+	if(!isIOS)html("noticetext","Downloading...."+ (isAndroid?"Check Notification bar to open the file. ( Use 'Download' app to open again.)":""));
 	$("notice").classList.remove("bg--clouds");
 	
 	$("notice").classList.add("bg--yellow");

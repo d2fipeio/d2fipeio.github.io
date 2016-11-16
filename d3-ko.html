@@ -981,7 +981,7 @@ var downloadurl=function(s){
 		hide("col");
 			hide("coll");
 
-	html("noticetext","다운로드가 시작되었습니다.다운로드 폴더를 확인해주세요."+ (isAndroid?"파일을 보시려면 알림창을 확인해보세요.파일위치는 다운로드 폴더입니다.(기본으로 깔린 '다운로드'앱을 실행하시면 됩니다.저장공간이 충분한지도 확인하세요.)":""));
+	if(!isIOS)html("noticetext","다운로드가 시작되었습니다.다운로드 폴더를 확인해주세요."+ (isAndroid?"파일을 보시려면 알림창을 확인해보세요.파일위치는 다운로드 폴더입니다.(기본으로 깔린 '다운로드'앱을 실행하시면 됩니다.저장공간이 충분한지도 확인하세요.)":""));
 	$("notice").classList.remove("bg--clouds");
 	
 	$("notice").classList.add("bg--yellow");
