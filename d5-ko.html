@@ -1667,9 +1667,14 @@ if(typeof id== "undefined") {
 		
 						html('size',	"["+formatBytes(filesize,1)+"]");
 						html("filename",filename);
+							if(isAndroid&&cmpVersions(osVersion,"5.0.0")<=0){
+								
+								hide('buttonforfile');
+							} else 
+							
 							if(filename.indexOf('.mp4')>0) {
 							hide('buttonforfile');
-							//show('buttonformp4');
+							show('buttonformp4');
 							}
 
 						
