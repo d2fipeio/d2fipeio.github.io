@@ -1591,16 +1591,14 @@ var loadScript = (function(url, callback) {
    head.appendChild(script);
 });
 function rendervideo2(url){ 
-//notice("LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.(업로드/다운로드/재생이 동시에 진행되어 전송상태에 따라 동영상이 일시적으로 멈출 수 있습니다. 잠시만 기다려 보세요) 기다려도 재생화면이 전혀 보이지 않는 경우,최신 크롬브라우져를 사용해보세요.");
 	if('WebKitMediaSource' in window || 'MediaSource' in window){ loadScript('dash.all.js',function(){
 		
-	
-		html('video' ,'<div style="font-size:12pt;" id="videomsg">LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.(업로드/다운로드/재생이 동시에 진행되어 전송상태에 따라 동영상이 일시적으로 멈출 수 있습니다. 잠시만 기다려 보세요)</div><video id="videotag" controls autostart="false" width="100%" ></video>');
+	notice("(업로드/다운로드/재생이 동시에 진행되어 전송상태에 따라 동영상이 일시적으로 멈출 수 있습니다. 잠시만 기다려 보세요) 기다려도 재생화면이 전혀 보이지 않는 경우,최신 크롬브라우져를 사용해보세요.");
+
+		html('video' ,'<div style="font-size:10pt;" id="videomsg">LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.</div><video id="videotag" controls autostart="false" width="100%" ></video>');
 	          var player = dashjs.MediaPlayer().create();
                   player.initialize(document.querySelector("#videotag"), url, false);
-				  player.on( MediaPlayerEvents.PLAYBACK_STARTED,function(){
-				  hide("videomsg");
-				  });
+				
 		 
 	
 
@@ -1617,7 +1615,7 @@ function rendervideo(surl){
 if(isIOS ){
 	hide("iosviewbtn");
 
-		html('iosvideo' ,'<video src="'+surl+'" autostart="false" controls  width="100%" ></video>LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.');
+		html('iosvideo' ,'<div style="font-size:10pt;" id="videomsg">LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.</div><video src="'+surl+'" autostart="false" controls  width="100%" ></video>LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.');
 	show('iosvideo');
 
 	show("ios");
