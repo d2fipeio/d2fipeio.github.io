@@ -1615,7 +1615,7 @@ function rendervideo(surl){
 if(isIOS ){
 	hide("iosviewbtn");
 
-		html('iosvideo' ,'<div style="font-size:10pt;" id="videomsg">LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.</div><video src="'+surl+'" autostart="false" controls  width="100%" ></video>LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.');
+		html('iosvideo' ,'<div style="font-size:10pt;" id="videomsg">LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.</div><video playsinline src="'+surl+'"  controls  width="100%" ></video>');
 	show('iosvideo');
 
 	show("ios");
