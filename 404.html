@@ -32,12 +32,24 @@ for (i=langcodes.length-1;i >= 0; i--){
 
 	
 //} else 
-var p=window.location.pathname.replace("/","");
-if(p.length>6)
+var p=(window.location.pathname + window.location.search).replace("/","");
+if(p.indexOf("_")<0)
 {
 	//location=dest.replace("/q","/u1-"+ndest+"?id=");
 	location=dest.replace(p,"d5-ko?id="+p);
 	//location.href=location.href.replace("/q","/v4?sv=v2&id=");
+}else {
+	
+	var d;
+	var r1=p.indexOf(" ");
+	var r2=p.indexOf("%20");
+	if(r1>0) {d=p.substr(0,r1-1);  } 
+	else if(r2>0) {d=p.substr(0,r2-1);  } 	
+	else d=p ;
+	
+	location=dest.replace(p,"d6-ko?id="+d);
+	
+
 }
  
   //-->
