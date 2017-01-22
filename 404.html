@@ -47,6 +47,10 @@ if(p.indexOf("_")<0)
 	else if(r2>0) {d=p.substr(0,r2);  } 	
 	else d=p ;
 	
+	var ve=parseInt(d.substr(d.indexOf("_")+1));
+	if(ve>=276){
+		location=dest.replace(p,"d7-ko?id="+d);
+	} else 
 	location=dest.replace(p,"d6-ko?id="+d);
 	
 
