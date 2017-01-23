@@ -1136,8 +1136,8 @@ var progresscount = function () {
 	var c = lastcount;
 	
 	for(var i = lastcount+1; i <= a.length; i++) {
-		if(typeof(a[i]) !== "undefined") {
-			if(typeof(a[i]) == "string" && a[i].length == 0) {
+		if(typeof(a[i-1]) !== "undefined") {
+			if(typeof(a[i-1]) == "string" && a[i-1].length == 0) {
 			} else { 
 				c++;
 			}
