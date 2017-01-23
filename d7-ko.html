@@ -1597,13 +1597,30 @@ function rendervideo2(url){
 		
 	notice("(업로드/다운로드/재생이 동시에 진행되어 전송상태에 따라 동영상이 일시적으로 멈출 수 있습니다. 잠시만 기다려 보세요)");
 
-		html('video' ,'<div style="font-size:10pt;text-align:center;padding-left: 10px;" id="videomsg"><br>LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.</div><video id="videotag" controls autostart="false" style="max-height:400px;" width="100%;" ></video>');
+		html('video' ,'<div style="font-size:10pt;text-align:center;padding-left: 10px;" id="videomsg"><br>바로보기를 원하시면 아래 재생버튼을 누르세요.LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.</div><video id="videotag" controls autostart="false" style="max-height:400px;" width="100%;" ></video>');
 	          var player = dashjs.MediaPlayer().create();
                   player.initialize(document.querySelector("#videotag"), url, false);
 				
 			
+			if(!url)ref.child('state').on("value", function(data) {
+				
+				if(data.exists())	{
+					var ddd=data.val();
+				
+				if (ddd == parseInt(ddd, 10))checkMsg(ddd);
+						
+				}	else{
+				
+						checkMsg(-10);	
+				
+				}
+				  
+					},function (errorObject) {
+						checkMsg(-10);	
+
+			});
 			
-			ref.parent().child('progress').on("child_added", function(data, pdata) {
+			if(!url)ref.parent().child('progress').on("child_added", function(data, pdata) {
 
 
             if (data.exists()) {
@@ -1637,18 +1654,21 @@ function rendervideo2(url){
 			}
 			});
 
-			ref.child('url').on("value", function(data) {
+			if(!url) {ref.child('url').on("value", function(data) {
 						
 						if(data.exists())	{
-						
+					url=data.val();	
 					if(!isAndroid){ show('videodownload');} else	{show('videodownloadandroid'); }
 						hide("uploadrow");
 					ref.child('url').off("value",arguments.callee);
 						}
 							
 						
-				});
-			ref.child('parts').on("value", function(data) {
+				});} else {
+				
+				if(!isAndroid){ show('videodownload');} else	{show('videodownloadandroid'); }
+				}
+			if(!url) ref.child('parts').on("value", function(data) {
 						
 						if(data.exists()&&data.val()>0)	{
 						
