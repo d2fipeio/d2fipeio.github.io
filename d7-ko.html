@@ -1641,7 +1641,7 @@ function rendervideo2(url){
 						
 						if(data.exists())	{
 						
-					if(!isAndroid) show('videodownload') else	show('videodownloadandroid'); 
+					if(!isAndroid){ show('videodownload');} else	{show('videodownloadandroid'); }
 						hide("uploadrow");
 					ref.child('url').off("value",arguments.callee);
 						}
