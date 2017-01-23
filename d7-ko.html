@@ -1597,7 +1597,7 @@ function rendervideo2(url){
 		
 	notice("(업로드/다운로드/재생이 동시에 진행되어 전송상태에 따라 동영상이 일시적으로 멈출 수 있습니다. 잠시만 기다려 보세요)");
 
-		html('video' ,'<div style="font-size:10pt;text-align:center;" id="videomsg"> LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.</div><video id="videotag" controls autostart="false" style="max-height:400px;" width="100%;" ></video>');
+		html('video' ,'<div style="font-size:10pt;text-align:center;padding-left: 10px;" id="videomsg"> LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.</div><video id="videotag" controls autostart="false" style="max-height:400px;" width="100%;" ></video>');
 	          var player = dashjs.MediaPlayer().create();
                   player.initialize(document.querySelector("#videotag"), url, false);
 				
@@ -1628,7 +1628,7 @@ function rendervideo2(url){
 
 										show("uploadrow");
 										hide("col");
-										html("upload", "{1}/{0} 분할파일 업로드중입니다.<br>업로드된 부분까지 바로 재생할 수 있으며, 업로드가 완료되면 파일로 다운로드를 할 수 있습니다.".format(max<1?"?":max,c));
+										html("upload", "{1}/{0} 분할파일 업로드중입니다.업로드된 부분까지 바로 재생할 수 있으며, 업로드가 완료되면 파일로도 다운로드를 할 수 있습니다.".format(max<1?"?":max,c));
 
 											
 									}
@@ -1646,7 +1646,7 @@ function rendervideo2(url){
 							
 						
 				});
-					ref.child('parts').on("value", function(data) {
+			ref.child('parts').on("value", function(data) {
 						
 						if(data.exists()&&data.val()>0)	{
 						
