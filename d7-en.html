@@ -1599,8 +1599,35 @@ function rendervideo2(url){
 
 		html('video' ,'<div style="font-size:10pt;text-align:center;padding-left: 10px;" id="videomsg"><br>바로보기를 원하시면 아래 재생버튼을 누르세요.LTE나 3G연결 중인 경우, 재생시 파일사이즈 만큼 데이터가 소진됩니다.</div><video id="videotag" controls autostart="false" style="max-height:400px;" width="100%;" ></video>');
 	          var player = dashjs.MediaPlayer().create();
-                  player.initialize(document.querySelector("#videotag"), url, false);
+
+			     var video=document.querySelector("#videotag");
+                  player.initialize(video, url, false);
 				
+				var supposedCurrentTime = 0;
+				video.addEventListener('timeupdate', function() {
+				  if (!video.seeking) {
+						supposedCurrentTime = video.currentTime;
+				  }
+				});
+				video.addEventListener('ended', function() {
+				  // reset state in order to allow for rewind
+					supposedCurrentTime = 0;
+				});
+                var lastUpdated = 'currentTime';
+				video.addEventListener('seeking', function () {
+                    // guard against infinite recursion:
+                    // user seeks, seeking is fired, currentTime is modified, seeking is fired, current time is modified, ....
+                    var t=video.currentTime;
+					var tr= video.buffered;
+                    
+									
+					if (tr!=null && tr.length>0&& (tr.start(0)>t|| tr.end(0)<t )) {
+                        video.pause();
+                        video.currentTime = supposedCurrentTime;
+                        video.play();
+                    }
+                });
+
 			
 			if(!url)ref.child('state').on("value", function(data) {
 				
