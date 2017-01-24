@@ -1601,7 +1601,7 @@ function rendervideo2(sdurl){
 	          var player = dashjs.MediaPlayer().create();
 
 			     var video=document.querySelector("#videotag");
-                  player.initialize(video, sdurl, false);
+               
 				
 				var supposedCurrentTime = 0;
 				video.addEventListener('timeupdate', function() {
@@ -1658,7 +1658,7 @@ function rendervideo2(sdurl){
                 var val1 = data.val();
 
 
-
+		       if(key==1 )  player.initialize(video, sdurl, false);
                 progress[key - 1] = val1;
 
 
