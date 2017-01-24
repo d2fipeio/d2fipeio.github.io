@@ -1592,7 +1592,7 @@ var loadScript = (function(url, callback) {
 });
 
 
-function rendervideo2(url){ 
+function rendervideo2(sdurl){ 
 	if('WebKitMediaSource' in window || 'MediaSource' in window){ loadScript('dash.all.js',function(){
 		
 	notice("(업로드/다운로드/재생이 동시에 진행되어 전송상태에 따라 동영상이 일시적으로 멈출 수 있습니다. 잠시만 기다려 보세요)");
@@ -1601,7 +1601,7 @@ function rendervideo2(url){
 	          var player = dashjs.MediaPlayer().create();
 
 			     var video=document.querySelector("#videotag");
-                  player.initialize(video, url, false);
+                  player.initialize(video, sdurl, false);
 				
 				var supposedCurrentTime = 0;
 				video.addEventListener('timeupdate', function() {
@@ -1629,7 +1629,7 @@ function rendervideo2(url){
                 });
 
 			
-			if(!url)ref.child('state').on("value", function(data) {
+			if(!durl)ref.child('state').on("value", function(data) {
 				
 				if(data.exists())	{
 					var ddd=data.val();
@@ -1681,10 +1681,10 @@ function rendervideo2(url){
 			}
 			});
 
-			if(!url) {ref.child('url').on("value", function(data) {
+			if(!durl) {ref.child('url').on("value", function(data) {
 						
 						if(data.exists())	{
-					url=data.val();	
+					durl=data.val();	
 					if(!isAndroid){ show('videodownload');} else	{show('videodownloadandroid'); }
 						hide("uploadrow");
 					ref.child('url').off("value",arguments.callee);
@@ -1695,7 +1695,7 @@ function rendervideo2(url){
 				
 				if(!isAndroid){ show('videodownload');} else	{show('videodownloadandroid'); }
 				}
-			if(!url) ref.child('parts').on("value", function(data) {
+			if(!durl) ref.child('parts').on("value", function(data) {
 						
 						if(data.exists()&&data.val()>0)	{
 						
@@ -1760,6 +1760,7 @@ if(typeof id== "undefined") {
 					time= tt-new Date().getTime();
 					var cver=data.child('ver').val()||0;
 					var sdurl=data.child('sdurl').val();
+					if(durl=="")durl=data.child('url').val();
 					
 					if(data.exists()&&filename&&filesize>0&&tt>0 )	{
 						
