@@ -32,11 +32,15 @@ for (i=langcodes.length-1;i >= 0; i--){
   
 	
 //} else 
+
+
 var p=(window.location.pathname + window.location.search).replace("/","");
 if(p.indexOf("_")<0)
 {
 	//location=dest.replace("/q","/u1-"+ndest+"?id=");
-	location=dest.replace(p,"d5-ko?id="+p);
+	if(window.location.search)	{location=dest.replace(p,"d5-ko?id="+p);} else {
+		location="https://play.google.com/store/apps/details?id=com.clipbirdapp.app";
+	}
 	//location.href=location.href.replace("/q","/v4?sv=v2&id=");
 }else {
 	    
