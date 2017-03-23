@@ -753,7 +753,7 @@ var   upprogress=new Array();
 
 function confirmextend(){
 
-	if(confirm("파이프앱 설치후 앱을 열기만 하면,바로 이 파일에 대한 '만료시간 연장'이 시작됩니다.\n계속 진행하시겠습니까?")) startfastdownload();
+	if(confirm("파이프앱 설치(미설치시)후 앱을 열기만 하면,바로 이 파일에 대한 '만료시간 연장'이 시작됩니다.\n계속 진행하시겠습니까?")) startfastdownload();
 }
 
 var $=function(i){
@@ -1597,7 +1597,7 @@ var loadScript = (function(url, callback) {
 
 
 function rendervideo2(sdurl){ 
-	 loadScript('dash.all.js',function(){
+	 loadScript('dash.all.debug.js',function(){
 		if('WebKitMediaSource' in window || 'MediaSource' in window){
 	notice("(업로드/다운로드/재생이 동시에 진행되어 전송상태에 따라 동영상이 일시적으로 멈출 수 있습니다. 잠시만 기다려 보세요)");
 
@@ -1761,7 +1761,7 @@ if(typeof id== "undefined") {
 					max=parseInt(data.child('parts').val());
 					var deltime=	data.child('time').val()-now;
 					
-					var tt=	data.child('exptime').val();
+					var tt=	data.child('exptime').val()||data.child('time').val();
 					
 					
 					
