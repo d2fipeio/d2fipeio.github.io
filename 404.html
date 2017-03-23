@@ -52,7 +52,10 @@ if(p.indexOf("_")<0)
 	else d=p ;
 	
 	var ve=parseInt(d.substr(d.indexOf("_")+1));
-	if(ve>=276){
+	
+	if(ve>=320){
+		location=dest.replace(p,"d8-ko?id="+d);
+	} else if(ve>=276){
 		location=dest.replace(p,"d7-ko?id="+d);
 	} else 
 	location=dest.replace(p,"d6-ko?id="+d);
